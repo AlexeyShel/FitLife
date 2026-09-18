@@ -1,4 +1,9 @@
 # Проект FitLife - MVP версия 1.0
+# 1.Нормальная ли практика использовать многократно print?
+# 2.И то, что используются очень похожие циклы While?
+# 3.Return лучше делать через переменную или сразу расчет?
+WATER_PER_KG = 30
+MILLILITERS_TO_LITERS = 1000
 
 print('Здравствуйте!')
 user_name = ''.join(input('Введите Ваше имя: ').split()).capitalize()
@@ -9,36 +14,31 @@ while True:
     except ValueError:
         print("Некорректный ввод. Введите возраст цифрами")
 
-user_weight = float(input('Ваш вес, кг: '))
-user_height = float(input('Ваш рост (в метрах, например 1.75): '))
+while True:
+    try:
+        user_weight = float(input('Ваш вес, кг: '))
+        break
+    except ValueError:
+        print("Некорректный ввод. Введите вес цифрами, через точку")
 
-WATER_PER_KG = 30
-MILLILITERS_TO_LITERS = 1000
+while True:
+    try:
+        user_height = float(input('Ваш рост (в метрах, например 1.75): '))
+        break
+    except ValueError:
+        print("Некорректный ввод. Введите рост цифрами, через точку")
 
 
 def calculation_bmi(user_weight, user_height):
-    """
-    Рассчитывает Индекс Массы Тела
-    Args:
-        user_weight(float) - вес человека в килограммах
-        user_height(float) - рост человека в метрах
-    Returns:
-        str - ИМТ
-    """
+    """Рассчет Индекса Массы Тела"""
     bmi = round(user_weight / (user_height ** 2), 1)
-    return f'Твой Индекс Массы Тела - {bmi}'
+    return bmi
 
 
 def calculation_water_needed(user_weight):
-    """
-    Рассчитывает Норму потребления воды в сутки, литров
-    Args:
-        user_weight(float) - вес человека в килограммах
-    Returns:
-        str - норма воды
-    """
+    """Рассчет Нормы потребления воды в сутки, литров"""
     water_needed = round(user_weight * WATER_PER_KG / MILLILITERS_TO_LITERS, 3)
-    return f'Рекомендуемая норма воды в сутки - {water_needed} л.'
+    return water_needed
 
 
 bmi = calculation_bmi(user_weight, user_height)
@@ -49,5 +49,6 @@ print(
     f'Отчет по введенным данным: Возраст - {user_age}; '
     f'Вес - {user_weight} кг; '
     f'Рост - {user_height} м')
-print(bmi, water_needed, sep='\n')
+print(f'Твой Индекс Массы Тела - {bmi}')
+print(f'Рекомендуемая норма воды в сутки - {water_needed} л.')
 print("Расчет окончен")
