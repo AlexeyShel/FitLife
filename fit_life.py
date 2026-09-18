@@ -1,7 +1,7 @@
 # Проект FitLife - MVP версия 1.0
 # 1.Нормальная ли практика использовать многократно print?
 # 2.И то, что используются очень похожие циклы While?
-# 3.Return лучше делать через переменную или сразу расчет?
+
 WATER_PER_KG = 30
 MILLILITERS_TO_LITERS = 1000
 
@@ -31,14 +31,12 @@ while True:
 
 def calculation_bmi(user_weight, user_height):
     """Рассчет Индекса Массы Тела"""
-    bmi = round(user_weight / (user_height ** 2), 1)
-    return bmi
+    return round(user_weight / (user_height ** 2), 1)
 
 
 def calculation_water_needed(user_weight):
     """Рассчет Нормы потребления воды в сутки, литров"""
-    water_needed = round(user_weight * WATER_PER_KG / MILLILITERS_TO_LITERS, 3)
-    return water_needed
+    return round(user_weight * WATER_PER_KG / MILLILITERS_TO_LITERS, 3)
 
 
 bmi = calculation_bmi(user_weight, user_height)
